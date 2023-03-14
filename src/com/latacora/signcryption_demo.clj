@@ -2,12 +2,22 @@
   (:require
    [caesium.crypto.aead :as aead]
    [caesium.crypto.sign :as sign]
+   [caesium.]
    [caesium.util :as cutil]
    [caesium.byte-bufs :as cbb]))
 
 (comment
-  (System/getProperty "java.library.path")
-  (System/setProperty "java.library.path" (str (System/getProperty "java.library.path") ":/opt/homebrew/lib")))
+  ;; Add Homebrew to the library search path for development on macOS
+
+  ;; Note: this isn't guaranteed to work according to the JLS but it works on
+  ;; every JVM I've tried on modern macOS + libsodium from Homebrew.
+  (let [lib-path "java.library.path"
+        cur-path (System/getProperty lib-path)
+        homebrew-path "/opt/homebrew/lib"]
+    ;; You're really supposed to use the correct separator here but because it
+    ;; only matters on macOS we know what that separator is anyway.
+    (when-not (str/includes? cur-path homebrew-path)
+      (System/setProperty lib-path (str cur-path ":" homebrew-path)))))
 
 (def version "N1")
 
