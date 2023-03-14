@@ -16,7 +16,7 @@
         homebrew-path "/opt/homebrew/lib"]
     ;; You're really supposed to use the correct separator here but because it
     ;; only matters on macOS we know what that separator is anyway.
-    (when-not (str/includes? cur-path homebrew-path)
+    (when-not (.contains cur-path homebrew-path)
       (System/setProperty lib-path (str cur-path ":" homebrew-path)))))
 
 (def version "N1")
