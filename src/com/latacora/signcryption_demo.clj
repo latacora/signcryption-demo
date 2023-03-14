@@ -2,7 +2,6 @@
   (:require
    [caesium.crypto.aead :as aead]
    [caesium.crypto.sign :as sign]
-   [caesium.]
    [caesium.util :as cutil]
    [caesium.byte-bufs :as cbb]))
 
